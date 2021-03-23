@@ -1,0 +1,5 @@
+.theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+  &:hover {
+    color: #00a1fe !important;
+  }
+}

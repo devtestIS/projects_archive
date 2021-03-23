@@ -1,0 +1,22 @@
+.apexcharts-legend-marker {
+  margin-right: 10px !important;
+}
+
+.apexcharts-legend {
+  align-items: flex-end;
+  padding: 40px 39px 30px 39px !important;
+}
+
+.apexcharts-tooltip,
+.apexcharts-tooltip.apexcharts-theme-light {
+  background: #1c2651 !important;
+  color: #ffffff !important;
+  border: 1px solid #081830 !important;
+  box-shadow: 2px 2px 6px -4px #081830 !important;
+
+  .apexcharts-tooltip-title {
+    color: #ffffff !important;
+    border-bottom: 1px solid #081830 !important;
+    background: #1c2651 !important;
+  }
+}

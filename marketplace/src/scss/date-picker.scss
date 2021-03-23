@@ -1,0 +1,52 @@
+.v-date-picker-table table {
+  border-collapse: collapse;
+}
+
+.v-date-picker-table__current:not(.v-btn--active) {
+  width: 41px !important;
+  height: 41px !important;
+  min-width: auto !important;
+  max-width: none !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+  color: #ffffff !important;
+  outline: none !important;
+  border: none !important;
+}
+
+.v-date-picker-table:not(.v-date-picker-table__current).v-btn {
+  height: 45px !important;
+}
+
+.v-date-picker-table--month .v-date-picker-table__events {
+  z-index: -3;
+}
+
+.v-date-picker-table .v-btn:not(.v-date-picker-table__current) {
+  height: 45px !important;
+}
+
+.v-date-picker-table .v-btn {
+  padding: 0 !important;
+  margin-bottom: 9px !important;
+}
+
+.v-date-picker-table__current.v-btn--active {
+  height: 45px !important;
+}
+
+.first-item,
+.last-item {
+  background: #00fffc;
+  width: calc(100% + 10px) !important;
+}
+
+.first-item {
+  transform: translateX(-10px);
+  border-radius: 10px 0px 0px 10px !important;
+}
+
+.last-item {
+  border-radius: 0 10px 10px 0 !important;
+}

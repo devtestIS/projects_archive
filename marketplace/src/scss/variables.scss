@@ -1,0 +1,151 @@
+$grid-breakpoints: (
+  'lg': 1424px - 16px
+);
+$material-light: (
+  'background':
+    linear-gradient(180deg, #0e173e 0%, #14154e 49.01%, #0c173a 100%),
+  'app-bar':
+    rgba(
+      $color: #ffffff,
+      $alpha: 0
+    ),
+  'text': (
+    'primary': #ffffff,
+    'secondary': #ffffff,
+    'link-hover':
+      rgba(
+        $color: #ffffff,
+        $alpha: 0
+      ),
+    'disabled': #ffffff
+  ),
+  'icons': (
+    'active': #00fffc
+  ),
+  'text-fields': (
+    'outlined':
+      rgba(
+        $color: #ffffff,
+        $alpha: 0
+      ),
+    'outlined-hover':
+      rgba(
+        $color: #ffffff,
+        $alpha: 0
+      )
+  ),
+  'cards': #081830,
+  'calendar': (
+    'background-color': #081830,
+    'outside-background-color': #081830,
+    'weeknumber-background-color': #081830,
+    'line-color': #00fffc,
+    'interval-color': #00fffc,
+    'interval-line-color': #00fffc,
+    'text-color': #ffffff,
+    'past-color': #00fffc
+  ),
+  'picker': (
+    'body': #081830
+  ),
+  'buttons': (
+    'disabled':
+      rgba(
+        $color: #00fffc,
+        $alpha: 0.1
+      )
+  ),
+  'dividers':
+    rgba(
+      $color: #ffffff,
+      $alpha: 0.5
+    ),
+  'tabs': #ffffff,
+  'table': (
+    'hover': transparent
+  )
+);
+$body-font-family: 'Raleway', sans-serif;
+$line-height-root: 19px;
+$app-bar-elevation: 0;
+$toolbar-content-padding-y: 0;
+$toolbar-content-padding-x: 0;
+$container-padding-x: 0;
+$headings: (
+  'h1': (
+    'size': 32px,
+    'weight': 900,
+    'line-height': 38px,
+    'letter-spacing': normal,
+    'text-transform': uppercase
+  )
+);
+$date-picker-table-date-button-width: 45px;
+$date-picker-table-date-button-height: 45px;
+$date-picker-title-year-font-size: 20px;
+$date-picker-title-year-font-weight: 600;
+$date-picker-table-font-size: 16px;
+$date-picker-table-date-font-weight: 400;
+$date-picker-table-month-height: 45px;
+$date-picker-table-padding: 0 35px;
+$date-picker-header-padding: 30px 0;
+$btn-font-weight: 400;
+$btn-border-radius: 0;
+$btn-text-transform: none;
+$text-field-outlined-fieldset-border: 2px solid transparent;
+$text-field-filled-full-width-outlined-slot-min-height: 65px;
+$input-label-height: 32px;
+$text-field-label-active-transform: translateY(-30px) scale(0.75);
+$text-field-outlined-label-position-y: -30px;
+$btn-sizes: (
+  'x-large': 55
+);
+$input-icon-height: 32px;
+$input-icon-width: 32px;
+$dialog-elevation: 0;
+$date-picker-event-size: 100%;
+$date-picker-event-date-bottom: 0;
+$date-picker-event-size: 100%;
+$date-picker-event-border-radius: 10px;
+$date-picker-event-margin: 0;
+$text-field-padding: 0 20px 0 30px;
+$input-prepend-append-outer-margin: 0;
+$card-actions-padding: 2px;
+$card-subtitle-padding: 30px 30px 28px 30px;
+$card-text-font-size: 16px;
+$card-text-line-height: 24px;
+$card-text-letter-spacing: normal;
+$divider-inset-margin: 10px;
+$divider-inset-margin-top: 0px;
+$chip-label-border-radius: 5px;
+$icon-sizes: (
+  'default': (
+    'font-size': 16,
+    'height': 39
+  )
+);
+$chip-padding: 10px 15px;
+$tooltip-background-color: transparent;
+$tooltip-text-color: #00fffc;
+$tooltip-font-size: 13px;
+$tooltip-padding: 0;
+$list-item-padding: 0 20px;
+$menu-content-elevation: 0;
+$tabs-bar-background-color: transparent;
+$tab-font-size: 20px;
+$tab-font-weight: 400;
+$tabs-item-padding: 0 15px;
+$data-table-regular-row-font-size: 13px;
+$data-table-regular-header-font-size: 13px;
+$data-table-regular-header-height: 65px;
+$data-table-regular-row-height: 65px;
+$pagination-border-radius: 0;
+$pagination-item-font-size: 16px;
+$pagination-item-height: 27px;
+$pagination-item-min-width: 27px;
+$pagination-item-padding: 0;
+$pagination-navigation-width: 27px;
+$pagination-navigation-height: 27px;
+$pagination-more-height: 27px;
+$pagination-more-width: 27px;
+$select-outlined-selections-padding-top: 8px 20px;
