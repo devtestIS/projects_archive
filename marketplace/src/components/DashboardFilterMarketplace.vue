@@ -17,8 +17,7 @@
 </template>
 
 <script>
-import { SET_MARKETPLACE_DATA, SET_MARKETPLACE } from '@/store/mutation-types'
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'DashboardFilterMarketplace',
@@ -37,7 +36,7 @@ export default {
         return this.marketplaceData
       },
       set(value) {
-        this[SET_MARKETPLACE_DATA](value)
+        this.setMarketplaceData(value)
       }
     },
     marketplaceVal: {
@@ -45,12 +44,12 @@ export default {
         return this.marketplace
       },
       set(value) {
-        this[SET_MARKETPLACE](value)
+        this.setMarketplace(value)
       }
     }
   },
   methods: {
-    ...mapMutations([SET_MARKETPLACE_DATA, SET_MARKETPLACE])
+    ...mapActions(['setMarketplaceData', 'setMarketplace'])
   }
 }
 </script>

@@ -20,7 +20,10 @@ import {
   SET_TRANSACTIONS,
   SET_MARKETPLACE_ITEM_DATA,
   SET_MARKETPLACE_TABLE_DATA,
-  SET_LAST_UPDATED_AT
+  SET_LAST_UPDATED_AT,
+  SET_SNACKBAR_TEXT,
+  SET_SNACKBAR_STATE,
+  SET_LOADING_STATE
 } from '@/store/mutation-types'
 import http from '@/store/helpers/http'
 import moment from 'moment'
@@ -51,7 +54,10 @@ export default new Vuex.Store({
     marketplace: '',
     transactions: [],
     marketplaceIemData: [],
-    marketplaceTableData: []
+    marketplaceTableData: [],
+    snackbarText: '',
+    snackbarState: false,
+    loadingState: false
   },
   getters: {
     login: state => {
@@ -182,6 +188,15 @@ export default new Vuex.Store({
     },
     [SET_LAST_UPDATED_AT](state, payload) {
       state.lastUpdatedAt = payload
+    },
+    [SET_SNACKBAR_TEXT](state, payload) {
+      state.snackbarText = payload
+    },
+    [SET_SNACKBAR_STATE](state, payload) {
+      state.snackbarState = payload
+    },
+    [SET_LOADING_STATE](state, payload) {
+      state.loadingState = payload
     }
   },
   actions: {
@@ -326,31 +341,112 @@ export default new Vuex.Store({
       router.push('/auth/login')
     },
     async getTransactions({ commit, getters }) {
-      const { from, to, marketplace } = getters.filterData
-      const response = await http.get(
-        `/a/transactions/?from=${from}${to ? '&to=' + to : ''}${
-          marketplace ? '&marketplace=' + marketplace : ''
-        }`
-      )
-      const {
-        data: {
-          data: transactions,
-          item_data: marketplaceIemData,
-          marketplace_data: marketplaceTableData
-        }
-      } = response
+      try {
+        commit(SET_LOADING_STATE, true)
+        const { from, to, marketplace } = getters.filterData
+        const response = await http.get(
+          `/a/transactions/?from=${from}${to ? '&to=' + to : ''}${
+            marketplace ? '&marketplace=' + marketplace : ''
+          }`
+        )
+        const {
+          data: {
+            data: transactions,
+            item_data: marketplaceIemData,
+            marketplace_data: marketplaceTableData
+          }
+        } = response
 
-      commit(SET_TRANSACTIONS, transactions)
-      commit(SET_MARKETPLACE_ITEM_DATA, marketplaceIemData)
-      commit(SET_MARKETPLACE_TABLE_DATA, marketplaceTableData)
+        commit(SET_TRANSACTIONS, transactions)
+        commit(SET_MARKETPLACE_ITEM_DATA, marketplaceIemData)
+        commit(SET_MARKETPLACE_TABLE_DATA, marketplaceTableData)
+        commit(SET_LOADING_STATE, false)
+      } catch (error) {
+        commit(SET_LOADING_STATE, false)
+        console.error(error)
+      }
     },
-    async csvExport({ getters }) {
-      const { from, to, marketplace } = getters.filterData
-      await http.get(
-        `/a/transactions/export?from=${from}${to ? '&to=' + to : ''}${
-          marketplace ? '&marketplace=' + marketplace : ''
-        }`
-      )
+    clearData({ commit }) {
+      commit(SET_TRANSACTIONS, [])
+      commit(SET_MARKETPLACE_ITEM_DATA, [])
+      commit(SET_MARKETPLACE_TABLE_DATA, [])
+      commit(SET_MARKETPLACE, '')
+      commit(SET_DATES, [])
+    },
+    setSnackbarText({ commit }, text) {
+      commit(SET_SNACKBAR_TEXT, text)
+    },
+    setSnackbarState({ commit }, state) {
+      commit(SET_SNACKBAR_STATE, state)
+    },
+    async csvExport({ commit, dispatch, getters }) {
+      try {
+        commit(SET_LOADING_STATE, true)
+        const { from, to, marketplace } = getters.filterData
+        const response = await http.get(
+          `/a/transactions/export?from=${from}${to ? '&to=' + to : ''}${
+            marketplace ? '&marketplace=' + marketplace : ''
+          }`,
+          { responseType: 'blob' }
+        )
+        const url = window.URL.createObjectURL(new Blob([response.data]))
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', `_${from}_${to}.csv`)
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        window.URL.revokeObjectURL(url)
+        dispatch('setSnackbarText', 'Export is completed')
+        dispatch('setSnackbarState', true)
+        commit(SET_LOADING_STATE, false)
+      } catch (error) {
+        commit(SET_LOADING_STATE, false)
+        console.error(error)
+      }
+    },
+    async csvImport({ commit, dispatch }, file) {
+      try {
+        commit(SET_LOADING_STATE, true)
+        const formData = new FormData()
+        formData.append('file', file)
+        await http.post('/a/transactions/import', formData, {
+          headers: { 'content-type': 'application/form-data' }
+        })
+        dispatch('setSnackbarText', 'Import is completed')
+        dispatch('setSnackbarState', true)
+        commit(SET_LOADING_STATE, false)
+      } catch (error) {
+        commit(SET_LOADING_STATE, false)
+        console.error(error)
+      }
+    },
+    setAuthToken({ commit }, payload) {
+      commit(SET_AUTH_TOKEN, payload)
+    },
+    setPassword({ commit }, payload) {
+      commit(SET_PASSWORD, payload)
+    },
+    setPasswordConfirm({ commit }, payload) {
+      commit(SET_PASSWORD_CONFIRM, payload)
+    },
+    setUserEmail({ commit }, payload) {
+      commit(SET_USER_EMAIL, payload)
+    },
+    setSellerId({ commit }, payload) {
+      commit(SET_SELLER_ID, payload)
+    },
+    setDates({ commit }, payload) {
+      commit(SET_DATES, payload)
+    },
+    setMarketplaceData({ commit }, payload) {
+      commit(SET_MARKETPLACE_DATA, payload)
+    },
+    setMarketplace({ commit }, payload) {
+      commit(SET_MARKETPLACE, payload)
+    },
+    setLoadingState({ commit }, payload) {
+      commit(SET_LOADING_STATE, payload)
     }
   },
   modules: {}

@@ -50,16 +50,22 @@
         </div>
       </div>
     </v-main>
+    <TheSnackbarWrapper />
+    <TheSpinner />
   </v-app>
 </template>
 
 <script>
 import DropdownLink from '@/components/DropdownLink'
+import TheSnackbarWrapper from '@/components/TheSnackbarWrapper'
+import TheSpinner from '@/components/TheSpinner'
 
 export default {
   name: 'App',
   components: {
-    DropdownLink
+    DropdownLink,
+    TheSnackbarWrapper,
+    TheSpinner
   },
   data: () => ({})
 }

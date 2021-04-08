@@ -1,5 +1,4 @@
-import { SET_AUTH_TOKEN } from '@/store/mutation-types'
-import { mapState, mapMutations, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   computed: {
@@ -9,12 +8,11 @@ export default {
         return this.auth_token
       },
       set(value) {
-        this[SET_AUTH_TOKEN](value)
+        this.setAuthToken(value)
       }
     }
   },
   methods: {
-    ...mapMutations([SET_AUTH_TOKEN]),
-    ...mapActions(['setUser', 'enableIntegration'])
+    ...mapActions(['setUser', 'enableIntegration', 'setAuthToken'])
   }
 }

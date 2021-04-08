@@ -1,10 +1,4 @@
-import {
-  SET_PASSWORD,
-  SET_PASSWORD_CONFIRM,
-  SET_USER_EMAIL,
-  SET_SELLER_ID
-} from '@/store/mutation-types'
-import { mapState, mapMutations, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -33,7 +27,7 @@ export default {
         return this.password
       },
       set(value) {
-        this[SET_PASSWORD](value)
+        this.setPassword(value)
       }
     },
     passworConfirmdVal: {
@@ -41,7 +35,7 @@ export default {
         return this.password_confirm
       },
       set(value) {
-        this[SET_PASSWORD_CONFIRM](value)
+        this.setPasswordConfirm(value)
       }
     },
     sellerIdVal: {
@@ -49,7 +43,7 @@ export default {
         return this.seller_id
       },
       set(value) {
-        this[SET_SELLER_ID](value)
+        this.setSellerId(value)
       }
     },
     emailVal: {
@@ -57,23 +51,21 @@ export default {
         return this.email
       },
       set(value) {
-        this[SET_USER_EMAIL](value)
+        this.setUserEmail(value)
       }
     }
   },
   methods: {
-    ...mapMutations([
-      SET_PASSWORD,
-      SET_PASSWORD_CONFIRM,
-      SET_USER_EMAIL,
-      SET_SELLER_ID
-    ]),
     ...mapActions([
       'login',
       'registration',
       'restorePassword',
       'clearResponseMessage',
-      'resetPassword'
+      'resetPassword',
+      'setPassword',
+      'setPasswordConfirm',
+      'setUserEmail',
+      'setSellerId'
     ])
   }
 }

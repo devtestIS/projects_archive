@@ -1,0 +1,21 @@
+.file-input {
+  .v-input__slot:before {
+    content: none !important;
+  }
+
+  .v-icon {
+    font-size: 14px !important;
+    color: #ffffff !important;
+  }
+
+  .v-input__slot {
+    cursor: pointer !important;
+  }
+
+  &:hover {
+    .v-icon,
+    .v-label {
+      color: #00a1fe !important;
+    }
+  }
+}

@@ -19,11 +19,19 @@
           Enable Integration</v-list-item-title
         >
       </v-list-item>
-      <v-list-item to="/">
-        <v-list-item-title class="link"
-          ><v-icon size="14" color="white" class="icon">mdi-plus</v-icon> Add
-          CSV file</v-list-item-title
-        >
+      <v-list-item>
+        <v-file-input
+          color="white"
+          prepend-icon="mdi-plus"
+          label="Add
+          CSV file"
+          hide-details
+          single-line
+          :clearable="false"
+          flat
+          class="file-input"
+          @change="csvImport"
+        ></v-file-input>
       </v-list-item>
       <v-divider class="devider"></v-divider>
       <v-list-item to="/account" class="link">
@@ -54,7 +62,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['logout'])
+    ...mapActions(['logout', 'csvImport'])
   }
 }
 </script>

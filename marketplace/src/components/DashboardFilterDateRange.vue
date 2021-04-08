@@ -43,8 +43,7 @@
 </template>
 
 <script>
-import { SET_DATES } from '@/store/mutation-types'
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'DashboardFilterDateRange',
@@ -71,7 +70,7 @@ export default {
         return this.dates
       },
       set(value) {
-        this[SET_DATES](value)
+        this.setDates(value)
       }
     }
   },
@@ -87,7 +86,7 @@ export default {
         this.menu = false
       }
     },
-    ...mapMutations([SET_DATES])
+    ...mapActions(['setDates'])
   }
 }
 </script>

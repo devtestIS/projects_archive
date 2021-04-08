@@ -5,12 +5,19 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import DashboardTabs from '@/components/DashboardTabs'
 
 export default {
   name: 'Dashboard',
   components: {
     DashboardTabs
+  },
+  methods: {
+    ...mapActions(['clearData'])
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => vm.clearData())
   }
 }
 </script>
